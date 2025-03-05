@@ -1,8 +1,10 @@
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 body {
   font-family: Arial, sans-serif;
@@ -11,7 +13,9 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f4f4f4;
+  transition: background-color 0.3s ease-in-out;
 }
+
 
 .calculator {
   width: 280px;
@@ -20,7 +24,9 @@ body {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
+
 
 .display {
   width: 100%;
@@ -32,11 +38,13 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
 
 .buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Quatre colonnes de même largeur */
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
@@ -47,7 +55,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,13 +65,16 @@ body {
   background-color: #e0e0e0;
 }
 
+
 .operator {
   background-color: #2ec72e;
+  color: white;
 }
 
 .operator:hover {
   background-color: #3d8d9b;
 }
+
 
 .equal {
   background-color: #8ac926;
@@ -73,7 +84,82 @@ body {
   background-color: #6b8e23;
 }
 
-button:last-child {
-  grid-column: span 1;
+.plus {
+  background-color: #2ec72e;
 }
 
+.plus:hover {
+  background-color: #e07b00;
+}
+
+.clear {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.clear:hover {
+  background-color: #c0392b;
+}
+
+
+.dark-mode {
+  background-color: #222;
+  color: white;
+}
+
+.dark-mode .calculator {
+  background-color: #333;
+  border-color: #555;
+}
+
+.dark-mode .display {
+  background-color: #444;
+  color: white;
+  border-color: #666;
+}
+
+.dark-mode .btn {
+  background-color: #555;
+  color: white;
+}
+
+.dark-mode .btn:hover {
+  background-color: #666;
+}
+
+
+.dark-mode .operator {
+  background-color: #f89b29;
+}
+
+.dark-mode .operator:hover {
+  background-color: #d87f1f;
+}
+
+.dark-mode .equal {
+  background-color: #66bb6a;
+}
+
+.dark-mode .equal:hover {
+  background-color: #4f9a51;
+}
+
+
+.dark-mode .clear {
+  background-color: #e74c3c;
+}
+
+.dark-mode .clear:hover {
+  background-color: #c0392b;
+}
+
+
+.dark-mode-toggle {
+  grid-column: span 2;
+  background-color: #444;
+  color: white;
+}
+
+.dark-mode-toggle:hover {
+  background-color: #555;
+}

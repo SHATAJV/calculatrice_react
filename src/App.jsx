@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // State pour afficher la valeur à l'écran
   const [display, setDisplay] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false); 
 
-  // Fonction pour gérer les clics sur les boutons
-  const handleButtonClick = (value) => {
-    setDisplay((prevDisplay) => prevDisplay + value);
-  };
-
-  // Fonction pour gérer la réinitialisation de l'écran
-  const handleClear = () => {
-    setDisplay('');
-  };
-
-  // Fonction pour gérer le calcul (optionnel, si tu veux ajouter plus tard)
-  const handleEqual = () => {
-    try {
-      setDisplay(eval(display).toString());  
-    } catch (error) {
-      setDisplay('Erreur');  
+ 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
+  }, [isDarkMode]);
+
+ 
+  const handleButtonClick = (value) => {
+    if (display === 'Erreur') setDisplay(value);
+    else setDisplay((prevDisplay) => prevDisplay + value);
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   return (
-    <div className="calculator">
+    <div className={`calculator ${isDarkMode ? 'dark' : ''}`}>
       <input type="text" className="display" value={display} disabled />
       <div className="buttons">
         <button className="btn" onClick={() => handleButtonClick('7')}>7</button>
@@ -44,9 +44,13 @@ function App() {
         <button className="btn operator" onClick={() => handleButtonClick('-')}>-</button>
 
         <button className="btn" onClick={() => handleButtonClick('0')}>0</button>
-        <button className="btn" onClick={handleClear}>C</button>
-        <button className="btn equal" onClick={handleEqual}>=</button>
-        <button className="btn operator" onClick={() => handleButtonClick('+')}>+</button>
+        <button className="btn" onClick={() => setDisplay('')}>C</button>
+        <button className="btn equal" onClick={() => setDisplay(eval(display).toString())}>=</button>
+        <button className="btn operator plus" onClick={() => handleButtonClick('+')}>+</button>
+
+        <button className="btn dark-mode-toggle" onClick={toggleDarkMode}>
+          {isDarkMode ? 'clair' : 'sombre'}
+        </button>
       </div>
     </div>
   );
